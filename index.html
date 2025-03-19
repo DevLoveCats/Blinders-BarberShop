@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/banner.css">
-    <link rel="stylesheet" href="./css/nav.css">
-    <link rel="stylesheet" href="./css/sobre.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/media.css">
+ 
 
 
     <link rel="icon" href="img/favcatblack.png">
@@ -16,13 +15,10 @@
 </head>
 <body>
 
-    <audio  id="music" autoplay >
-        <source src="./music/Nick Cave & The Bad Seeds - Red Right Hand (Mojo Filter Remix) Peaky Blinders Soundtrack [1].MP3" aria-details="Audio do site">
-    </audio>
-
+  
     <!-- banner -->
 
-    <header class="header">
+    <header class="header_opening">
 
         <!-- efeitos do banner -->
         <div class="efeitos">
@@ -33,28 +29,25 @@
 
         <!-- logo e afins -->
         <div class="detalhe">
-            <img src="img/coroa_gold.png" class="detalhe_logo" alt="detalhe da logo">
+            <img src="./img/coroa.png" class="detalhe_logo" alt="detalhe da logo">
         </div>
         <div class="container_logo">
-            <img src="img/LOGO BRANCO.png" class="logo" alt="logo da Blinders BarberShop">
+            <img src="img/LOGO BRANCO.png" class="logo_splash" alt="logo da Blinders BarberShop">
             <h1>ELEGÂNCIA CORTANTE</h1>
             <hr class="borda">
         </div>
 
-        <!-- nav -->
-        <div class="container_nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Blinders</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
+        <!-- entrar -->
+        <div class="container_entrar">
+            <button class="btn" onclick="entrarSite()">Seja Bem Vindo!</button>
         </div>
+        
     </header>
 
 
-    
+    <div id="player">
+        <audio id="bg-music" src="./music/Nick Cave & The Bad Seeds - Red Right Hand (Mojo Filter Remix) Peaky Blinders Soundtrack.MP3"  autoplay loop audio.volume = 0.2></audio>
+    </div>
 
     <script src="script.js"></script>
 </body>

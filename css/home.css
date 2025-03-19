@@ -1,0 +1,911 @@
+
+
+a {
+    color: aliceblue;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: 0.3s;
+ }
+ 
+ a:hover {
+    opacity: 0.7;
+ }
+
+body {
+    
+    flex-direction: column;
+    background-color: black;
+    min-height: 100vh;
+}
+
+section {
+    height: 100%;
+}
+
+header {
+    position:fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding: 20px 100px;
+    z-index: 1000;
+    transition: 0.6s;
+}
+
+header.sticky {        
+    background: rgba(0, 0, 0, 0.965);   /*--sem background a navbar fica transparente--*/
+    padding: 15px 100px;
+}
+
+
+.logo {
+    position: relative;
+    display: flex;
+    width: 100px;
+    right: 100px;
+    
+    
+}
+
+
+
+header .menu {
+    position: relative;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+ 
+}
+
+
+header .btn {
+    color: #daa520;
+    font-size: 25px;
+    margin-left: auto;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+
+header .menu a {
+    color: aliceblue;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 30px;
+    padding: 0 10px;
+    transition: 0.3s;   
+}
+
+header .menu a:hover{
+   color: goldenrod;
+}
+
+header .menu a.active {
+    color: goldenrod;
+}
+
+.icone {
+    display: flex;
+}
+
+.icone img {
+    width: 25px;
+    height: auto;
+    margin: 0 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.icone img:hover {
+    transform: scale(1.2);
+}
+
+
+
+@media (max-width: 768px) {
+    header .btn {
+        display: block;  
+    }
+
+    header .menu {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.965);  
+        flex-direction: column;
+        min-width: 100%;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 80px 50px;
+        transition: 0.6s;
+    }
+    
+    header .menu.active {
+        right:0;
+    }
+
+    header .menu .close-btn {
+        position: absolute;
+        color: #daa520;
+        font-size: 25px;
+        top: 20px;
+        left: 50%;  
+        transform: translateX(-50%); 
+        cursor: pointer;
+    }
+   
+    header .menu a {
+        display: block;
+        font-size: 20px;
+        margin: 20px;
+        padding: 0 15px;
+        text-align: center;
+    }
+
+   /* Ajuste para os ícones */
+   .menu .icone {
+        display: flex;
+        flex-direction: row; /* Garante que os ícones fiquem em linha */
+        justify-content: center; /* Centraliza os ícones */
+        gap: 15px; /* Espaço entre os ícones */
+        margin-top: 20px; /* Espaço acima dos ícones */
+        margin-bottom: 20px; /* Adiciona um espaçamento na parte inferior */
+    
+}
+
+    .menu .icone img {
+        width: 25px; /* Define um tamanho fixo para os ícones */
+        height: auto; /* Mantém os ícones quadrados */
+        object-fit: contain; /* Garante que os ícones se ajustem corretamente */
+}
+}
+
+
+
+
+/* --sobre-- */
+
+main {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+   
+   
+}
+
+.sobre  h2 {
+    font-family: "Bentham", serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: aliceblue;
+    letter-spacing: 8px;
+    animation: opacity 5s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+        
+    }
+    100% {
+        opacity: 1;
+        
+    }
+}
+
+.sobre h3  {
+    font-family: "Bentham", serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: aliceblue;
+    letter-spacing: 8px;
+   
+}
+
+
+.img, .img1, .img2, .img3 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+
+}
+
+.img {
+    background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_sobre.jpg) no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.6;
+   
+    
+
+}
+
+.img .overlay_bg {
+    background: linear-gradient(#0f0702 #e2e2e2);
+}
+
+.img1 {
+    background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_1.jpg);
+    min-height: 400px;
+    
+   
+}
+
+.img2 {
+    background-image:linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_2.jpg);
+    min-height: 400px;
+    
+   
+} 
+
+.img3 {
+    background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_sobre_2.jpg) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1000px;
+    opacity: 0.6;
+    
+}
+
+.titulo {
+    width: 100%;
+    height: 200px;
+    margin-top: 50px;
+    align-items: center;
+    text-align: center;
+    padding: 50px 80px;
+    background-color: black;
+    color: #fff;
+}
+
+.texto {  
+    position: relative;
+    top: 50%;
+    font-family: "Roboto Flex", sans-serif;
+    text-align: center;
+    color: goldenrod;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+
+.texto1, .texto2 {
+    position: relative;
+    top: 75px;
+    margin: 25 25 25 25;
+    padding: 50px 90px;
+    font-family: "Roboto Flex", sans-serif;
+    text-align: justify;
+    color: goldenrod;
+    font-size: 1.5rem;
+    letter-spacing: 5px; 
+}
+    
+.texto3 {
+    position: relative;
+    top: 570px;
+    text-align: center;
+    padding: 50px 50px;
+    font-family: "Bentham", serif;
+    color: #dcdcdc;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.logo_sobre {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto; /* Auto centraliza na horizontal */
+    margin-top: 350px;
+    max-width: 250px;
+    padding: 10px;
+}
+
+/* --animation-- */
+
+.autoScale {
+    animation: autoScale;
+    animation-timeline: view();
+}
+
+@keyframes autoScale {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.autoShow {
+    animation: autoShow both;
+    animation-timeline: view(100% 5%);
+}
+
+@keyframes autoShow {
+    0% {
+        opacity: 0;
+        transform: translateY(200px) scale(0.3);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+
+
+/* --Blinders-- */
+
+
+.blinders {
+    display: flex;
+    justify-content: center;
+    background: black;
+    background-size: cover;
+    background-position: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100vh;      
+    overflow: hidden;
+}
+
+
+/* Nuvens */
+.blinders .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blinders .clouds img {
+    position: absolute;
+    bottom: 0;
+    max-width: 100%;
+    animation: clouds calc(10s * var(--i)) linear infinite;
+    opacity: 0.1;
+   
+}
+
+@keyframes clouds {
+   100% {
+    opacity: 0;
+    transform: scale(1);
+   }
+   25%, 75% {
+    opacity: 1;
+   }
+   100% {
+    opacity: 0;
+    transform: scale(3);
+   }
+   
+}
+
+
+/* Carrossel */
+.galeria-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 1100px;
+    height: 550px;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    overflow: visible;
+}
+
+.galeria {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.galeria-item {
+    position: absolute;
+    width: 500px; /* Ajustado para melhorar proporção */
+    height: 550px; 
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+    bottom: 0px; /* Para que as setas fiquem abaixo */
+    filter: grayscale(100%);
+    object-fit: contain;
+}
+
+.galeria-item.active {
+    transform: scale(1.15);
+    z-index: 3;
+    opacity: 1;
+    bottom: 50px;
+    filter: grayscale(0%);
+    
+}
+
+.galeria-item.left {
+    transform: translateX(-290px) scale(0.85);
+    z-index: 2;
+}
+
+.galeria-item.right {
+    transform: translateX(290px) scale(0.85);
+    z-index: 2;
+}
+
+/* Controles (setas) */
+.control {
+    background: none; /* Remove borda */
+    border: none;
+    font-size: 80px; /* Aumenta o tamanho */
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    z-index: 5;
+    transition: opacity 0.3s;
+    bottom: 300px; /* --0px desce fica abaixo do carrossel / mudar no @media-- */
+
+}
+
+.control:hover {
+    color: goldenrod;
+    transform: scale(1.3);
+}
+
+.prev {    /*--left e right com 25% centraliza ao centro / mudar no @media--*/
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+
+/* --serviços-- */
+
+.servicos {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.serv_wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+   
+}
+
+
+.box_esq {
+    position: relative;
+    display: flex;
+    margin-top: 335px;
+    width: 50%;
+    height: 100vh;
+    background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/box_servicos.jpg) center no-repeat;
+    background-size: cover;
+}
+
+
+.box_dir {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 335px;
+    width: 50%;
+    height: 100vh;
+    background: linear-gradient(rgb(15, 15, 15), rgba(53, 36, 10, 0.5)), url(../img/bg_valor.jpg) center no-repeat;
+    background-size: cover;
+}
+
+
+.tabela {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.tabela h2 {
+    font-family: "Bentham", serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: goldenrod;
+}
+
+.lista_servicos {
+    width: 100%;
+    max-width: 500px; /* Define um limite para a largura */
+    margin-top: 30px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between; /* Mantém serviço à esquerda e preço à direita */
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc; /* Linha separadora */
+    gap: 20px; /* Espaço entre os elementos */
+    margin-top: 10px;
+}
+
+.servico {
+    flex: 1; /* Ocupa o espaço disponível */
+    text-align: left;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.preco {
+    min-width: 80px; /* Define um tamanho mínimo para evitar colar */
+    text-align: right;
+    font-weight: bold;
+    color: goldenrod;
+    font-size: 1.1rem;
+
+}
+
+strong {
+    color: goldenrod;
+}
+
+
+
+
+.autoShow2 {
+    animation: autoShow2 both;
+    animation-timeline: view(100% 5%);
+}
+
+@keyframes autoShow2 {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.autoShow3 {
+    animation: autoShow3 both;
+    animation-timeline: view(100% 5%);
+}
+
+@keyframes autoShow3 {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* --galeria-- */
+
+
+.slider {
+    width: 1300px;
+    max-width: 100vw;
+    height: 700px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    margin-top: 700px;
+}
+
+.slider .lista {
+    position: absolute;
+    width: max-content;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    transition: 1s;
+}
+
+.slider .lista img {
+    width: 1300px;
+    max-width: 100vw;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider .botao {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider .botao button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: goldenrod;
+    color: aliceblue;
+    border: none;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: bolder;
+}
+
+.slider .pontos {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: aliceblue;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.slider .pontos li {
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: goldenrod;
+    margin: 10px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.slider .pontos li .active {
+    width: 30px;
+}
+
+
+
+/* --contato-- */
+
+.contato {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 450px 100px 0 100px;
+    background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_contato.jpg) center no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 20px;
+    opacity: 0;
+}
+
+.contato h2 {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: goldenrod;
+    margin-bottom: 10px;
+}
+
+.contato p  {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    color: aliceblue;
+    padding: 10px 0;
+
+}
+
+.contato span {
+    color: goldenrod;
+    font-size: 1.1rem;
+}
+
+
+.email {
+    display: block;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    color: goldenrod;
+    margin-left: 25px;
+    background: none;
+    transition: 0.3s ease-in;
+}
+
+.email:hover {
+    transform: scale(1.3);
+    color: goldenrod;
+}
+.local {
+    display: block;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1rem;
+    color: aliceblue;
+    padding: 10px 0;
+    transition: 0.3s ease-in;
+}
+
+.local:hover {
+    transform: scale(1.3);
+    color: goldenrod;
+}
+
+.card {
+    align-items: center;
+    text-align: center;
+
+}
+
+/* --modal email e local-- */
+
+
+.modal_container {
+    position: absolute;
+    display: flex;
+    justify-content: left;
+    left: 100px;
+    bottom: 10px;
+    overflow: hidden;
+
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+.active .modal {
+    animation: modal .4s ease-in-out;
+}
+
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 45px;
+    background: black;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.modal h2 {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 1.2rem;
+    color: goldenrod;
+    margin: 32px;
+    margin-top: 15px;
+}
+
+.modal .close {
+    position: relative;
+    color: aliceblue;
+    font-size: 1.2rem;
+    cursor: pointer;
+    
+}
+
+.close .close-email {
+    position: relative;
+    margin-left:200px ;
+    bottom: 50px;  
+    transition: .3s ease-in;
+}
+
+.close .close-email:hover {
+    transform: scale(1.3);
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    width: 100;
+    
+}
+
+form label {
+    color: azure;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+form input {
+    padding: 15px;
+    outline: none;
+    border: 0;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+    form textarea {
+        padding: 10px;
+        outline: none;
+        border: 0;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    form button {
+        padding: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        color: aliceblue;
+        background: goldenrod;
+        border-radius: 0 0 10px 10px;
+        margin-bottom: 15px;
+        transition: .3s ease-in;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+
+    
+
+    /* --footer-- */
+
+.footer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: goldenrod;
+    top: 6250px;   
+}
+
+.footer img {
+    width: 100px;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.footer img:hover {
+    transform: scale(1.1);
+}
+
+.footer p {
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 12px;
+    color: aliceblue;
+}

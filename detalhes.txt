@@ -5,3 +5,20 @@ E também siga-nos nas redes sociais e fique por dentro de estilos, tendências 
 música
 
 https://youtu.be/rw2ANJEqLXA?si=XHc4K5GUp_qHX3Xl
+
+
+
+ "Abril Fatface", serif;
+
+
+
+<i class="fa-solid fa-angles-right"></i>
+
+
+<i class="fa-solid fa-angles-left"></i>
+
+
+
+https://icons8.com/icons/set/social-media--style-material
+
+https://fontawesome.com/search?o=r&ic=free&s=solid&ip=classic

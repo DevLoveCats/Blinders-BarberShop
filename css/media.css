@@ -1,0 +1,71 @@
+/* --media queries-- */
+
+
+/* --375 px-- */
+@media (max-width: 375px ) {
+   .header_opening{
+        position: fixed;
+    
+   }
+
+    .container_logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+
+
+    }
+   .detalhe_logo {
+        width: 120px;
+   
+    
+   }
+   .logo_splash {
+        width: 150px;
+    
+   }
+
+   h1 {
+        font-size: 12px;
+   }
+
+   hr {
+        width: 150px;
+   }
+   .btn {
+        font-size: 12px;
+   }
+
+   /* --home-- */
+
+   /* --navbar-- */
+
+   header .logo{
+        width: 80px;
+        margin-left: 20px;
+   }
+
+   header .btn .close-btn{
+        display: block;
+        
+    }
+
+    /* ---sobre- */
+
+    .texto, .texto1, .texto2 {
+        font-size: 15px;
+    }
+
+
+
+
+
+
+
+}
+
+
+
+    
