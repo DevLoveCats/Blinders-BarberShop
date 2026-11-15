@@ -76,3 +76,65 @@ section {
 }
 
 
+/* --botão de som (canto inferior direito)-- */
+.som-toggle {
+    position: fixed;
+    right: clamp(0.75rem, 3vw, 1.5rem);
+    bottom: clamp(0.75rem, 3vw, 1.5rem);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.6);
+    color: goldenrod;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s, color 0.3s;
+}
+
+.som-toggle:hover,
+.som-toggle:focus-visible {
+    background: rgba(0, 0, 0, 0.85);
+    color: aliceblue;
+}
+
+.som-toggle .icone-som {
+    flex: none;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+/* estados: esperando o 1º toque (pulsa e mostra o texto) | tocando | mudo */
+.som-toggle .mudo,
+.som-toggle .onda { display: none; }
+
+.som-toggle.esperando .mudo { display: block; }
+.som-toggle.tocando .onda { display: block; }
+.som-toggle.mudo .mudo { display: block; }
+
+.som-toggle:not(.esperando) .som-texto { display: none; }
+
+.som-toggle.esperando {
+    animation: som-pulsa 1.8s ease-in-out infinite;
+}
+
+@keyframes som-pulsa {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .som-toggle.esperando { animation: none; }
+}
+
+/* com o menu hambúrguer aberto, o botão de som sai de cena */
+html.menu-open .som-toggle {
+    visibility: hidden;
+}

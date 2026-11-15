@@ -7,7 +7,30 @@ if (music) {
     music.volume = 0.2;
 
     const botaoSom = document.getElementById('som-toggle');
-    let pausadoPelaPessoa = false;
+    const naAbertura = !!document.querySelector('.header_opening');   // true só na index.html
+
+    // A troca index -> home recarrega a página, o que cortaria o áudio. Então guardamos (só nesta aba)
+    // se a música estava ligada e em que ponto ela estava, e a outra página continua dali.
+    const CHAVE = 'blinders-musica';
+    function lerEstado() {
+        try { return JSON.parse(sessionStorage.getItem(CHAVE)) || {}; } catch (e) { return {}; }
+    }
+    function salvarEstado(parcial) {
+        try { sessionStorage.setItem(CHAVE, JSON.stringify(Object.assign(lerEstado(), parcial))); } catch (e) { /* sem armazenamento: segue sem continuidade */ }
+    }
+
+    const estado = lerEstado();
+
+    // index: toca sozinha (a não ser que a pessoa tenha silenciado).
+    // home: só toca se veio da index com a música ligada; se abriu direto, fica quieta até apertar o botão.
+    let pausadoPelaPessoa = naAbertura ? estado.on === false : estado.on !== true;
+
+    // retoma do ponto onde a outra página parou
+    if (estado.t > 0) {
+        const irParaPonto = () => { try { music.currentTime = estado.t; } catch (e) { /* ignora */ } };
+        if (music.readyState >= 1) irParaPonto();
+        else music.addEventListener('loadedmetadata', irParaPonto, { once: true });
+    }
 
     function atualizarBotaoSom() {
         if (!botaoSom) return;
@@ -38,17 +61,21 @@ if (music) {
         }
     }
 
-    music.addEventListener('play', atualizarBotaoSom);
+    music.addEventListener('play', () => { salvarEstado({ on: true }); atualizarBotaoSom(); });
     music.addEventListener('pause', atualizarBotaoSom);
+    music.addEventListener('timeupdate', () => { if (!music.paused) salvarEstado({ t: music.currentTime }); });
+    window.addEventListener('pagehide', () => { if (!music.paused) salvarEstado({ t: music.currentTime }); });
 
     if (botaoSom) {
         botaoSom.addEventListener('click', (e) => {
             e.stopPropagation();           // não deixa o "qualquer toque" religar a música logo em seguida
             if (music.paused) {
                 pausadoPelaPessoa = false;
+                salvarEstado({ on: true });
                 music.play().catch(() => {});
             } else {
                 pausadoPelaPessoa = true;
+                salvarEstado({ on: false });
                 music.pause();
             }
             atualizarBotaoSom();
@@ -57,8 +84,10 @@ if (music) {
         botaoSom.addEventListener('touchend', (e) => e.stopPropagation());
     }
 
-    gestos.forEach(g => document.addEventListener(g, iniciarMusica));
-    iniciarMusica();
+    if (!pausadoPelaPessoa) {
+        gestos.forEach(g => document.addEventListener(g, iniciarMusica));
+        iniciarMusica();
+    }
     atualizarBotaoSom();
 }
 
