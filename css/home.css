@@ -129,6 +129,25 @@ header .menu a.active {
 
 /* --menu hamburguer (tablet e celular)-- */
 @media (max-width: 900px) {
+
+    /* logo centralizada na tela e botão ☰ à direita (o menu é "fixed", então não ocupa lugar na grade) */
+    header {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+
+    header > a {
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    header > .btn {
+        grid-column: 3;
+        justify-self: end;
+        margin-left: 0;
+    }
+
     header .btn {
         display: block;
     }
