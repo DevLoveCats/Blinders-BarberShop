@@ -45,6 +45,27 @@ html {
     border-bottom-right-radius: 50px;
 }
 
+/* Celular/tablet e janelas estreitas: sem barra de rolagem "de desktop" (a página continua rolando normalmente) */
+@media (max-width: 900px), (pointer: coarse) {
+    html,
+    body,
+    .menu {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+}
+
+/* Menu hambúrguer aberto: trava a rolagem da página de trás */
+html.menu-open {
+    overflow: hidden;
+}
+
 
 .container {
     padding-left: 15%;

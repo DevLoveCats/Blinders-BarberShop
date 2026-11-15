@@ -6,16 +6,30 @@ const music = document.getElementById('bg-music');
 if (music) {
     music.volume = 0.2;
 
+    const botaoSom = document.getElementById('som-toggle');
+    let pausadoPelaPessoa = false;
+
+    function atualizarBotaoSom() {
+        if (!botaoSom) return;
+        const tocando = !music.paused;
+        botaoSom.classList.toggle('tocando', tocando);
+        botaoSom.classList.toggle('mudo', !tocando && pausadoPelaPessoa);
+        botaoSom.classList.toggle('esperando', !tocando && !pausadoPelaPessoa);
+        botaoSom.setAttribute('aria-pressed', String(tocando));
+        botaoSom.setAttribute('aria-label', tocando ? 'Desligar o som' : 'Ativar o som');
+    }
+
     // Os navegadores só liberam som automático depois que a pessoa interage com o site
     // (clicar, tocar ou usar o teclado). Então: tenta tocar assim que a página abre e,
-    // se o navegador bloquear, começa no primeiro clique/toque/tecla — sem precisar de botão.
-    const gestos = ['pointerdown', 'click', 'touchend', 'keydown'];
+    // se o navegador bloquear, começa no primeiro clique/toque/tecla (ou no botão de som).
+    const gestos = ['click', 'touchend', 'keydown'];
 
     function pararDeEsperarGesto() {
         gestos.forEach(g => document.removeEventListener(g, iniciarMusica));
     }
 
     function iniciarMusica() {
+        if (pausadoPelaPessoa) return;
         const tocando = music.play();
         if (tocando && typeof tocando.then === 'function') {
             tocando.then(pararDeEsperarGesto).catch(() => { /* continua esperando um gesto */ });
@@ -24,8 +38,28 @@ if (music) {
         }
     }
 
+    music.addEventListener('play', atualizarBotaoSom);
+    music.addEventListener('pause', atualizarBotaoSom);
+
+    if (botaoSom) {
+        botaoSom.addEventListener('click', (e) => {
+            e.stopPropagation();           // não deixa o "qualquer toque" religar a música logo em seguida
+            if (music.paused) {
+                pausadoPelaPessoa = false;
+                music.play().catch(() => {});
+            } else {
+                pausadoPelaPessoa = true;
+                music.pause();
+            }
+            atualizarBotaoSom();
+        });
+        // o toque no botão não deve disparar também o "qualquer toque"
+        botaoSom.addEventListener('touchend', (e) => e.stopPropagation());
+    }
+
     gestos.forEach(g => document.addEventListener(g, iniciarMusica));
     iniciarMusica();
+    atualizarBotaoSom();
 }
 
   function loadPage(page) {
@@ -75,24 +109,28 @@ var menuLinks = document.querySelectorAll('.menu a'); // Correção aqui! Agora 
 
 // (a página de abertura, index.html, não tem menu)
 if (menu && menuBtn && closeBtn) {
-    menuBtn.addEventListener("click", () => {
+    // Com o menu aberto a página de trás não rola (assim a barra de rolagem dela não aparece por cima do menu)
+    function abrirMenu() {
         menu.classList.add('active');
-    });
+        document.documentElement.classList.add('menu-open');
+    }
 
-    closeBtn.addEventListener("click", () => {
+    function fecharMenu() {
         menu.classList.remove('active');
-    });
+        document.documentElement.classList.remove('menu-open');
+    }
+
+    menuBtn.addEventListener("click", abrirMenu);
+    closeBtn.addEventListener("click", fecharMenu);
 
     // Fecha o menu ao clicar em qualquer link
     menuLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            menu.classList.remove("active");
-        });
+        link.addEventListener("click", fecharMenu);
     });
 
     // Se a tela for ampliada (ex.: girar o celular), garante que o menu não fique "preso" aberto
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 900) menu.classList.remove("active");
+        if (window.innerWidth > 900) fecharMenu();
     });
 }
 
