@@ -94,7 +94,7 @@ body {
 
 .detalhe_logo {
     position: relative;
-    width: clamp(120px, 40vw, 180px);
+    width: clamp(7.5rem, 40vw, 11.25rem);
     opacity: 0;
     animation: detalheAnimation 2s ease-in forwards;
     animation-delay: 10s;
@@ -118,7 +118,7 @@ body {
 }
 
 .logo_splash {
-    width: clamp(150px, 50vw, 200px);
+    width: clamp(9.375rem, 50vw, 12.5rem);
     height: auto;
     transform: scale(0);
     opacity: 0;
@@ -185,7 +185,7 @@ h1 {
 
 hr {
     justify-content: center;
-    width: clamp(150px, 50vw, 200px);
+    width: clamp(9.375rem, 50vw, 12.5rem);
     text-align: center;
     border-top: 1.5px solid aliceblue;
     margin-top: 10px;
@@ -239,6 +239,24 @@ hr {
 }
 
 .btn:hover {
+    color: goldenrod;
+}
+
+/* sem borda / anel de foco no botão "Seja Bem Vindo!" (o foco por teclado continua visível pela cor) */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.btn:focus-visible {
     color: goldenrod;
 }
 

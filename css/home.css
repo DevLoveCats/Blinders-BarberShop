@@ -22,6 +22,30 @@ section {
     height: 100%;
 }
 
+/* --rolagem alinhada: cada tópico "encaixa" no topo da tela-- */
+html {
+    scroll-snap-type: y mandatory;
+}
+
+.sobre,
+.blinders,
+.servicos,
+.slider,
+.contato {
+    scroll-snap-align: start;
+}
+
+.footer {
+    scroll-snap-align: end;   /* garante que o rodapé apareça ao chegar no fim da página */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+    }
+}
+
 header {
     position:fixed;
     display: flex;
@@ -30,21 +54,21 @@ header {
     align-items: center;
     top: 0;
     left: 0;
-    padding: 20px clamp(20px, 5vw, 100px);
+    padding: 1.25rem clamp(1.25rem, 5vw, 6.25rem);
     z-index: 1000;
     transition: 0.6s;
 }
 
 header.sticky {
     background: rgba(0, 0, 0, 0.965);   /*--sem background a navbar fica transparente--*/
-    padding: 15px clamp(20px, 5vw, 100px);
+    padding: 0.9375rem clamp(1.25rem, 5vw, 6.25rem);
 }
 
 
 .logo {
     position: relative;
     display: flex;
-    width: 100px;
+    width: 6.25rem;
 }
 
 
@@ -60,7 +84,7 @@ header .menu {
 
 header .btn {
     color: #daa520;
-    font-size: 25px;
+    font-size: 1.5625rem;
     margin-left: auto;
     cursor: pointer;
     display: none;
@@ -71,10 +95,10 @@ header .btn {
 
 header .menu a {
     color: aliceblue;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
-    margin: 0 clamp(8px, 1.6vw, 30px);
-    padding: 0 10px;
+    margin: 0 clamp(0.5rem, 1.6vw, 1.875rem);
+    padding: 0 0.625rem;
     transition: 0.3s;
 }
 
@@ -91,9 +115,9 @@ header .menu a.active {
 }
 
 .icone img {
-    width: 25px;
+    width: 1.5625rem;
     height: auto;
-    margin: 0 10px;
+    margin: 0 0.625rem;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -185,7 +209,7 @@ main {
     font-size: 1.5rem;
     text-align: center;
     color: aliceblue;
-    letter-spacing: 8px;
+    letter-spacing: 0.5rem;
     animation: opacity 5s ease-in forwards;
     opacity: 0;
 }
@@ -206,7 +230,7 @@ main {
     font-size: clamp(1.1rem, 2.2vw + 0.5rem, 1.5rem);
     text-align: center;
     color: aliceblue;
-    letter-spacing: clamp(2px, 0.8vw, 8px);
+    letter-spacing: clamp(2px, 0.8vw, 0.5rem);
 
 }
 
@@ -240,14 +264,14 @@ main {
 
 .img1 {
     background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_1.jpg);
-    min-height: 400px;
+    min-height: 25rem;
     display: flex;
     align-items: center;
 }
 
 .img2 {
     background-image:linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_2.jpg);
-    min-height: 400px;
+    min-height: 25rem;
     display: flex;
     align-items: center;
 }
@@ -257,24 +281,24 @@ main {
     background-size: cover;
     background-position: center;
     width: 100%;
-    min-height: clamp(520px, 80vw, 1000px);
+    min-height: clamp(32.5rem, 80vw, min(62.5rem, 100svh));
     opacity: 0.6;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .titulo {
     width: 100%;
-    min-height: 200px;
-    margin-top: 50px;
+    min-height: 12.5rem;
+    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 50px clamp(20px, 6vw, 80px);
+    padding: 3rem clamp(1.25rem, 6vw, 5rem);
     background-color: black;
     color: #fff;
 }
@@ -285,7 +309,7 @@ main {
     text-align: center;
     color: goldenrod;
     font-size: 1.5rem;
-    letter-spacing: 5px;
+    letter-spacing: 0.3rem;
     text-transform: uppercase;
 }
 
@@ -293,19 +317,21 @@ main {
 .texto1, .texto2 {
     position: relative;
     width: 100%;
-    padding: clamp(30px, 5vw, 50px) clamp(20px, 7vw, 90px);
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: clamp(1.875rem, 5vw, 3rem) clamp(1.25rem, 7vw, 5.5rem);
     font-family: "Roboto Flex", sans-serif;
     text-align: justify;
     color: goldenrod;
     font-size: clamp(1rem, 1.2vw + 0.6rem, 1.5rem);
-    letter-spacing: clamp(1px, 0.4vw, 5px);
+    letter-spacing: clamp(1px, 0.4vw, 0.3rem);
 }
 
 .texto3 {
     position: relative;
     order: 2;
     text-align: center;
-    padding: 20px clamp(20px, 5vw, 50px);
+    padding: 1.25rem clamp(1.25rem, 5vw, 3rem);
     font-family: "Bentham", serif;
     color: #dcdcdc;
     font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem);
@@ -316,41 +342,88 @@ main {
     order: 1;
     display: block;
     margin: 0 auto;
-    width: min(250px, 60vw);
+    width: min(15.625rem, 60vw);
     height: auto;
-    padding: 10px;
+    padding: 0.625rem;
 }
 
-/* --animation-- */
-
-.autoScale {
-    animation: autoScale;
-    animation-timeline: view();
-}
+/* --animation-- (aparecem suavemente conforme a tela rola; só em navegadores que suportam) */
 
 @keyframes autoScale {
     0% {
-        transform: scale(0);
+        opacity: 0;
+        transform: scale(0.9);
     }
     100% {
+        opacity: 1;
         transform: scale(1);
     }
-}
-
-
-.autoShow {
-    animation: autoShow both;
-    animation-timeline: view(100% 5%);
 }
 
 @keyframes autoShow {
     0% {
         opacity: 0;
-        transform: translateY(200px) scale(0.3);
+        transform: translateY(4rem) scale(0.96);
     }
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes autoShow2 {
+    0% {
+        opacity: 0;
+        transform: translateX(-12%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes autoShow3 {
+    0% {
+        opacity: 0;
+        transform: translateX(12%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .autoScale {
+            animation: autoScale both ease-out;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+
+        .autoShow {
+            animation: autoShow both ease-out;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+
+        .autoShow2 {
+            animation: autoShow2 both ease-out;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+
+        .autoShow3 {
+            animation: autoShow3 both ease-out;
+            animation-timeline: view();
+            animation-range: entry 0% entry 100%;
+        }
+
+        .contato .card {
+            animation: autoShow both ease-out;
+            animation-timeline: view();
+            animation-range: entry 5% entry 100%;
+        }
     }
 }
 
@@ -361,7 +434,7 @@ main {
 
 
 .blinders {
-    --w: min(500px, 78vw);   /* largura de cada personagem do carrossel */
+    --w: min(31.25rem, 78vw, 58vh);   /* largura de cada personagem do carrossel */
     position: relative;      /* sem isso as nuvens e o carrossel se posicionam em relação à página inteira */
     display: flex;
     justify-content: center;
@@ -370,7 +443,8 @@ main {
     background-position: center;
     align-items: flex-end;
     width: 100%;
-    height: min(100vh, calc(var(--w) * 1.1 + 330px));
+    height: 100vh;
+    height: 100svh;
     overflow: hidden;
 }
 
@@ -418,10 +492,10 @@ main {
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    max-width: 1100px;
+    max-width: 68.75rem;
     height: calc(var(--w) * 1.1);
     position: absolute;
-    bottom: -40px;
+    bottom: -2.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -451,7 +525,7 @@ main {
     transform: scale(1.15);
     z-index: 3;
     opacity: 1;
-    bottom: 50px;
+    bottom: 3.125rem;
     filter: grayscale(0%);
 
 }
@@ -470,7 +544,7 @@ main {
 .control {
     background: none; /* Remove borda */
     border: none;
-    font-size: clamp(36px, 8vw, 80px); /* Aumenta o tamanho */
+    font-size: clamp(2.25rem, 8vw, 5rem); /* Aumenta o tamanho */
     font-weight: bold;
     color: white;
     cursor: pointer;
@@ -503,13 +577,13 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
 }
 
 
 .serv_wrapper {
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
 
 }
@@ -532,7 +606,7 @@ main {
     align-items: center;
     flex: 1 1 50%;
     min-width: 0;
-    padding: 60px clamp(20px, 4vw, 60px);
+    padding: 6rem clamp(1.25rem, 4vw, 3.75rem) 3.75rem;
     background: linear-gradient(rgb(15, 15, 15), rgba(53, 36, 10, 0.5)), url(../img/bg_valor.jpg) center no-repeat;
     background-size: cover;
 }
@@ -551,24 +625,24 @@ main {
     font-family: "Bentham", serif;
     font-size: clamp(1.3rem, 3vw + 0.5rem, 2rem);
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 0.1875rem;
     color: goldenrod;
 }
 
 .lista_servicos {
     width: 100%;
-    max-width: 500px; /* Define um limite para a largura */
-    margin-top: 30px;
+    max-width: 31.25rem; /* Define um limite para a largura */
+    margin-top: 1.875rem;
 }
 
 .item {
     display: flex;
     justify-content: space-between; /* Mantém serviço à esquerda e preço à direita */
     align-items: center;
-    padding: 10px 0;
+    padding: 0.625rem 0;
     border-bottom: 1px dashed #ccc; /* Linha separadora */
-    gap: 20px; /* Espaço entre os elementos */
-    margin-top: 10px;
+    gap: 1.25rem; /* Espaço entre os elementos */
+    margin-top: 0.625rem;
 }
 
 .servico {
@@ -579,7 +653,7 @@ main {
 }
 
 .preco {
-    min-width: 80px; /* Define um tamanho mínimo para evitar colar */
+    min-width: 5rem; /* Define um tamanho mínimo para evitar colar */
     text-align: right;
     font-weight: bold;
     color: goldenrod;
@@ -592,51 +666,28 @@ strong {
 }
 
 
-
-
-.autoShow2 {
-    animation: autoShow2 both;
-    animation-timeline: view(100% 5%);
-}
-
-@keyframes autoShow2 {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.autoShow3 {
-    animation: autoShow3 both;
-    animation-timeline: view(100% 5%);
-}
-
-@keyframes autoShow3 {
-    0% {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
 /* --galeria-- */
 
 
 .slider {
+    position: relative;
     width: 100%;
-    max-width: 1300px;
-    height: clamp(240px, 56vw, 700px);
-    margin: 100px auto 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5.5rem 0 2rem;
+    background: black;
+    overflow: hidden;
+}
+
+/* moldura 16:9 que sempre cabe na tela (largura e altura) */
+.slider-frame {
     position: relative;
     overflow: hidden;
+    width: min(94vw, calc((100svh - 7.5rem) * 16 / 9));
+    aspect-ratio: 16 / 9;
 }
 
 .slider .lista {
@@ -671,8 +722,8 @@ strong {
 }
 
 .slider .botao button {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     border-radius: 50%;
     background-color: goldenrod;
     color: aliceblue;
@@ -696,17 +747,17 @@ strong {
 
 .slider .pontos li {
     list-style: none;
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     background-color: goldenrod;
-    margin: 10px;
+    margin: 0.625rem;
     border-radius: 20px;
     transition: 0.5s;
     cursor: pointer;
 }
 
 .slider .pontos li.active {
-    width: 30px;
+    width: 1.875rem;
 }
 
 
@@ -717,33 +768,32 @@ strong {
     position: relative;
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    padding: 120px clamp(20px, 6vw, 100px);
+    gap: 2.5rem;
+    padding: 7.5rem clamp(1.25rem, 6vw, 6.25rem) 6rem;
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_contato.jpg) center no-repeat;
     background-position: center;
     background-size: cover;
-    margin-top: 20px;
-    opacity: 0;
 }
 
 .contato h2 {
     font-family: "Roboto Flex", sans-serif;
     font-size: 1.5rem;
     font-weight: 400;
-    letter-spacing: 3px;
+    letter-spacing: 0.1875rem;
     color: goldenrod;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .contato p  {
     font-family: "Roboto Flex", sans-serif;
     font-size: 1rem;
     color: aliceblue;
-    padding: 10px 0;
+    padding: 0.625rem 0;
 
 }
 
@@ -756,10 +806,10 @@ strong {
 .email {
     display: block;
     max-width: 100%;
-    padding: 10px 0;
+    padding: 0.625rem 0;
     font-size: 1.2rem;
     color: goldenrod;
-    margin-left: 25px;
+    margin-left: 1.5625rem;
     background: none;
     transition: 0.3s ease-in;
     overflow-wrap: anywhere;
@@ -769,12 +819,30 @@ strong {
     transform: scale(1.3);
     color: goldenrod;
 }
+
+/* sem borda / anel de foco no e-mail (o foco por teclado continua visível pela cor) */
+.email,
+.email:hover,
+.email:focus,
+.email:active {
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.email:focus-visible {
+    color: aliceblue;
+}
+
 .local {
     display: block;
     font-family: "Roboto Flex", sans-serif;
     font-size: 1rem;
     color: aliceblue;
-    padding: 10px 0;
+    padding: 0.625rem 0;
     transition: 0.3s ease-in;
 }
 
@@ -784,6 +852,8 @@ strong {
 }
 
 .card {
+    flex: 1 1 0;       /* três colunas de larguras iguais, alinhadas em qualquer monitor */
+    min-width: 0;
     align-items: center;
     text-align: center;
 
@@ -796,8 +866,8 @@ strong {
     position: absolute;
     display: flex;
     justify-content: left;
-    left: clamp(20px, 6vw, 100px);
-    bottom: 10px;
+    left: clamp(1.25rem, 6vw, 6.25rem);
+    bottom: 0.625rem;
     overflow: hidden;
 
     display: none;
@@ -818,9 +888,9 @@ strong {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 10px 45px;
+    padding: 0.625rem 2.8rem;
     background: black;
-    width: min(320px, 92vw);
+    width: min(20rem, 92vw);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
@@ -829,8 +899,8 @@ strong {
     font-family: "Roboto Flex", sans-serif;
     font-size: 1.2rem;
     color: goldenrod;
-    margin: 32px;
-    margin-top: 15px;
+    margin: 2rem;
+    margin-top: 0.9375rem;
 }
 
 .modal .close {
@@ -909,12 +979,12 @@ form input {
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 50px;
+    min-height: 3.125rem;
     background-color: goldenrod;
 }
 
 .footer img {
-    width: 100px;
+    width: 6.25rem;
     cursor: pointer;
     transition: .3s ease-in;
 }
@@ -925,6 +995,6 @@ form input {
 
 .footer p {
     font-family: "Roboto Flex", sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: aliceblue;
 }

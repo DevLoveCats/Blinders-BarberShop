@@ -1,5 +1,6 @@
 /* --media queries-- */
-/* Obs.: a maior parte da responsividade já está nas próprias regras (clamp, min, flex).
+/* Obs.: a maior parte da responsividade já está nas próprias regras (rem, clamp, min, flex).
+   O tamanho de tudo que está em rem cresce sozinho em monitores grandes (veja html no reset.css).
    Aqui ficam só os ajustes que mudam a estrutura em telas menores. */
 
 
@@ -18,13 +19,24 @@
 /* --900 px-- */
 @media (max-width: 900px) {
 
+    /* em telas estreitas/retrato o carrossel não precisa ocupar a tela toda */
+    .blinders {
+        height: min(100vh, calc(var(--w) * 1.1 + 20.6rem));
+        height: min(100svh, calc(var(--w) * 1.1 + 20.6rem));
+    }
+
     /* contato empilhado */
     .contato {
         flex-direction: column;
         justify-content: center;
-        gap: 50px;
-        padding-top: 100px;
-        padding-bottom: 80px;
+        gap: 3rem;
+        padding-top: 6.5rem;
+        padding-bottom: 5rem;
+    }
+
+    .contato .card {
+        flex: none;
+        width: 100%;
     }
 
     .email {
@@ -61,21 +73,23 @@
 
     .box_esq {
         flex: none;
-        min-height: 260px;
+        min-height: 16rem;
     }
 
     .box_dir {
         flex: none;
-        padding: 50px 20px;
+        padding: 3rem 1.25rem;
     }
 
     .titulo {
         min-height: 0;
-        padding: 40px 20px;
+        padding: 2.5rem 1.25rem;
     }
 
-    .slider {
-        margin-top: 60px;
+    /* galeria: moldura mais "alta" para aproveitar a tela do celular/tablet em pé */
+    .slider-frame {
+        width: 100%;
+        aspect-ratio: 4 / 3;
     }
 }
 
@@ -102,8 +116,8 @@
     }
 
     .slider .botao button {
-        width: 38px;
-        height: 38px;
+        width: 2.4rem;
+        height: 2.4rem;
     }
 
     .slider .pontos li {

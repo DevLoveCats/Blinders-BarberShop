@@ -2,7 +2,31 @@
 // musica
 
 const music = document.getElementById('bg-music');
-if (music) music.volume = 0.2;
+
+if (music) {
+    music.volume = 0.2;
+
+    // Os navegadores só liberam som automático depois que a pessoa interage com o site
+    // (clicar, tocar ou usar o teclado). Então: tenta tocar assim que a página abre e,
+    // se o navegador bloquear, começa no primeiro clique/toque/tecla — sem precisar de botão.
+    const gestos = ['pointerdown', 'click', 'touchend', 'keydown'];
+
+    function pararDeEsperarGesto() {
+        gestos.forEach(g => document.removeEventListener(g, iniciarMusica));
+    }
+
+    function iniciarMusica() {
+        const tocando = music.play();
+        if (tocando && typeof tocando.then === 'function') {
+            tocando.then(pararDeEsperarGesto).catch(() => { /* continua esperando um gesto */ });
+        } else {
+            pararDeEsperarGesto();
+        }
+    }
+
+    gestos.forEach(g => document.addEventListener(g, iniciarMusica));
+    iniciarMusica();
+}
 
   function loadPage(page) {
     const xhr = new XMLHttpRequest();

@@ -23,8 +23,9 @@ a {
 }
 
 html {
-    
-   
+    /* Escala fluida: 100% (16px) até ~1440px de largura e vai crescendo em monitores maiores
+       (1080p ≈ 20px, 1440p ≈ 25px, limite de 32px). Tudo que está em rem acompanha. */
+    font-size: min(max(100%, calc(0.25rem + 0.833vw)), 2rem);
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
