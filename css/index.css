@@ -1,14 +1,18 @@
 body {
     background-color: black;
+    /* a animação de abertura começa com scale(1.4); sem isso o navegador móvel alarga a página */
+    overflow-x: hidden;
 }
 
 .header_opening {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_banner.jpg);
     filter: contrast(1);
     background-size: cover;
     background-position: center;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -90,8 +94,7 @@ body {
 
 .detalhe_logo {
     position: relative;
-    top: 300px;
-    width: 180px; 
+    width: clamp(120px, 40vw, 180px);
     opacity: 0;
     animation: detalheAnimation 2s ease-in forwards;
     animation-delay: 10s;
@@ -110,12 +113,12 @@ body {
 
 .container_logo {
 
-    margin-top: 300px;
+    margin-top: 5px;
     text-align: center;
 }
 
 .logo_splash {
-    width: 200px;
+    width: clamp(150px, 50vw, 200px);
     height: auto;
     transform: scale(0);
     opacity: 0;
@@ -182,7 +185,7 @@ h1 {
 
 hr {
     justify-content: center;
-    width: 200px;
+    width: clamp(150px, 50vw, 200px);
     text-align: center;
     border-top: 1.5px solid aliceblue;
     margin-top: 10px;

@@ -6,13 +6,13 @@ a {
     text-decoration: none;
     transition: 0.3s;
  }
- 
+
  a:hover {
     opacity: 0.7;
  }
 
 body {
-    
+
     flex-direction: column;
     background-color: black;
     min-height: 100vh;
@@ -26,18 +26,18 @@ header {
     position:fixed;
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     top: 0;
     left: 0;
-    padding: 20px 100px;
+    padding: 20px clamp(20px, 5vw, 100px);
     z-index: 1000;
     transition: 0.6s;
 }
 
-header.sticky {        
+header.sticky {
     background: rgba(0, 0, 0, 0.965);   /*--sem background a navbar fica transparente--*/
-    padding: 15px 100px;
+    padding: 15px clamp(20px, 5vw, 100px);
 }
 
 
@@ -45,9 +45,6 @@ header.sticky {
     position: relative;
     display: flex;
     width: 100px;
-    right: 100px;
-    
-    
 }
 
 
@@ -57,7 +54,7 @@ header .menu {
     display: flex;
     justify-content:center;
     align-items: center;
- 
+
 }
 
 
@@ -76,9 +73,9 @@ header .menu a {
     color: aliceblue;
     font-size: 16px;
     font-weight: 500;
-    margin: 0 30px;
+    margin: 0 clamp(8px, 1.6vw, 30px);
     padding: 0 10px;
-    transition: 0.3s;   
+    transition: 0.3s;
 }
 
 header .menu a:hover{
@@ -106,25 +103,31 @@ header .menu a.active {
 
 
 
-@media (max-width: 768px) {
+/* --menu hamburguer (tablet e celular)-- */
+@media (max-width: 900px) {
     header .btn {
-        display: block;  
+        display: block;
     }
 
     header .menu {
         position: fixed;
-        background: rgba(0, 0, 0, 0.965);  
+        background: rgba(0, 0, 0, 0.965);
         flex-direction: column;
-        min-width: 100%;
+        width: 100%;
         height: 100vh;
+        height: 100dvh;
         top: 0;
-        right: -100%;
+        right: 0;
         padding: 80px 50px;
-        transition: 0.6s;
+        overflow-y: auto;
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform 0.6s, visibility 0.6s;
     }
-    
+
     header .menu.active {
-        right:0;
+        transform: translateX(0);
+        visibility: visible;
     }
 
     header .menu .close-btn {
@@ -132,11 +135,11 @@ header .menu a.active {
         color: #daa520;
         font-size: 25px;
         top: 20px;
-        left: 50%;  
-        transform: translateX(-50%); 
+        left: 50%;
+        transform: translateX(-50%);
         cursor: pointer;
     }
-   
+
     header .menu a {
         display: block;
         font-size: 20px;
@@ -153,7 +156,7 @@ header .menu a.active {
         gap: 15px; /* Espaço entre os ícones */
         margin-top: 20px; /* Espaço acima dos ícones */
         margin-bottom: 20px; /* Adiciona um espaçamento na parte inferior */
-    
+
 }
 
     .menu .icone img {
@@ -169,11 +172,12 @@ header .menu a.active {
 /* --sobre-- */
 
 main {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
-   
-   
+    width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;   /* corta as animações que entram pelos lados sem criar scroll horizontal */
 }
 
 .sobre  h2 {
@@ -189,21 +193,21 @@ main {
 @keyframes opacity {
     0% {
         opacity: 0;
-        
+
     }
     100% {
         opacity: 1;
-        
+
     }
 }
 
 .sobre h3  {
     font-family: "Bentham", serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2.2vw + 0.5rem, 1.5rem);
     text-align: center;
     color: aliceblue;
-    letter-spacing: 8px;
-   
+    letter-spacing: clamp(2px, 0.8vw, 8px);
+
 }
 
 
@@ -213,19 +217,21 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+
 
 }
 
 .img {
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_sobre.jpg) no-repeat;
     background-size: cover;
-    width: 100vw;
+    background-position: center;
+    width: 100%;
     height: 100vh;
+    height: 100svh;
     opacity: 0.6;
-   
-    
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .img .overlay_bg {
@@ -235,40 +241,46 @@ main {
 .img1 {
     background-image: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_1.jpg);
     min-height: 400px;
-    
-   
+    display: flex;
+    align-items: center;
 }
 
 .img2 {
     background-image:linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bgSobre_2.jpg);
     min-height: 400px;
-    
-   
-} 
+    display: flex;
+    align-items: center;
+}
 
 .img3 {
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_sobre_2.jpg) no-repeat;
     background-size: cover;
+    background-position: center;
     width: 100%;
-    height: 1000px;
+    min-height: clamp(520px, 80vw, 1000px);
     opacity: 0.6;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 .titulo {
     width: 100%;
-    height: 200px;
+    min-height: 200px;
     margin-top: 50px;
+    display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 50px 80px;
+    padding: 50px clamp(20px, 6vw, 80px);
     background-color: black;
     color: #fff;
 }
 
-.texto {  
+.texto {
     position: relative;
-    top: 50%;
     font-family: "Roboto Flex", sans-serif;
     text-align: center;
     color: goldenrod;
@@ -280,34 +292,32 @@ main {
 
 .texto1, .texto2 {
     position: relative;
-    top: 75px;
-    margin: 25 25 25 25;
-    padding: 50px 90px;
+    width: 100%;
+    padding: clamp(30px, 5vw, 50px) clamp(20px, 7vw, 90px);
     font-family: "Roboto Flex", sans-serif;
     text-align: justify;
     color: goldenrod;
-    font-size: 1.5rem;
-    letter-spacing: 5px; 
+    font-size: clamp(1rem, 1.2vw + 0.6rem, 1.5rem);
+    letter-spacing: clamp(1px, 0.4vw, 5px);
 }
-    
+
 .texto3 {
     position: relative;
-    top: 570px;
+    order: 2;
     text-align: center;
-    padding: 50px 50px;
+    padding: 20px clamp(20px, 5vw, 50px);
     font-family: "Bentham", serif;
     color: #dcdcdc;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem);
     letter-spacing: 2px;
 }
 
 .logo_sobre {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0 auto; /* Auto centraliza na horizontal */
-    margin-top: 350px;
-    max-width: 250px;
+    order: 1;
+    display: block;
+    margin: 0 auto;
+    width: min(250px, 60vw);
+    height: auto;
     padding: 10px;
 }
 
@@ -351,6 +361,8 @@ main {
 
 
 .blinders {
+    --w: min(500px, 78vw);   /* largura de cada personagem do carrossel */
+    position: relative;      /* sem isso as nuvens e o carrossel se posicionam em relação à página inteira */
     display: flex;
     justify-content: center;
     background: black;
@@ -358,7 +370,7 @@ main {
     background-position: center;
     align-items: flex-end;
     width: 100%;
-    height: 100vh;      
+    height: min(100vh, calc(var(--w) * 1.1 + 330px));
     overflow: hidden;
 }
 
@@ -381,7 +393,7 @@ main {
     max-width: 100%;
     animation: clouds calc(10s * var(--i)) linear infinite;
     opacity: 0.1;
-   
+
 }
 
 @keyframes clouds {
@@ -396,7 +408,7 @@ main {
     opacity: 0;
     transform: scale(3);
    }
-   
+
 }
 
 
@@ -407,7 +419,7 @@ main {
     align-items: flex-end;
     width: 100%;
     max-width: 1100px;
-    height: 550px;
+    height: calc(var(--w) * 1.1);
     position: absolute;
     bottom: -40px;
     left: 50%;
@@ -427,8 +439,8 @@ main {
 
 .galeria-item {
     position: absolute;
-    width: 500px; /* Ajustado para melhorar proporção */
-    height: 550px; 
+    width: var(--w);
+    height: calc(var(--w) * 1.1);
     transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
     bottom: 0px; /* Para que as setas fiquem abaixo */
     filter: grayscale(100%);
@@ -441,16 +453,16 @@ main {
     opacity: 1;
     bottom: 50px;
     filter: grayscale(0%);
-    
+
 }
 
 .galeria-item.left {
-    transform: translateX(-290px) scale(0.85);
+    transform: translateX(-58%) scale(0.85);
     z-index: 2;
 }
 
 .galeria-item.right {
-    transform: translateX(290px) scale(0.85);
+    transform: translateX(58%) scale(0.85);
     z-index: 2;
 }
 
@@ -458,14 +470,14 @@ main {
 .control {
     background: none; /* Remove borda */
     border: none;
-    font-size: 80px; /* Aumenta o tamanho */
+    font-size: clamp(36px, 8vw, 80px); /* Aumenta o tamanho */
     font-weight: bold;
     color: white;
     cursor: pointer;
     position: absolute;
     z-index: 5;
     transition: opacity 0.3s;
-    bottom: 300px; /* --0px desce fica abaixo do carrossel / mudar no @media-- */
+    bottom: calc(var(--w) * 0.6); /* --0px desce fica abaixo do carrossel / mudar no @media-- */
 
 }
 
@@ -487,7 +499,6 @@ main {
 
 .servicos {
     width: 100%;
-    height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -498,18 +509,17 @@ main {
 
 .serv_wrapper {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-   
+
 }
 
 
 .box_esq {
     position: relative;
     display: flex;
-    margin-top: 335px;
-    width: 50%;
-    height: 100vh;
+    flex: 1 1 50%;
+    min-width: 0;
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/box_servicos.jpg) center no-repeat;
     background-size: cover;
 }
@@ -520,9 +530,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 335px;
-    width: 50%;
-    height: 100vh;
+    flex: 1 1 50%;
+    min-width: 0;
+    padding: 60px clamp(20px, 4vw, 60px);
     background: linear-gradient(rgb(15, 15, 15), rgba(53, 36, 10, 0.5)), url(../img/bg_valor.jpg) center no-repeat;
     background-size: cover;
 }
@@ -539,7 +549,7 @@ main {
 
 .tabela h2 {
     font-family: "Bentham", serif;
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 3vw + 0.5rem, 2rem);
     font-weight: 300;
     letter-spacing: 3px;
     color: goldenrod;
@@ -564,7 +574,7 @@ main {
 .servico {
     flex: 1; /* Ocupa o espaço disponível */
     text-align: left;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 0.6vw + 0.85rem, 1.2rem);
     color: white;
 }
 
@@ -621,18 +631,17 @@ strong {
 
 
 .slider {
-    width: 1300px;
-    max-width: 100vw;
-    height: 700px;
-    margin: auto;
+    width: 100%;
+    max-width: 1300px;
+    height: clamp(240px, 56vw, 700px);
+    margin: 100px auto 0;
     position: relative;
     overflow: hidden;
-    margin-top: 700px;
 }
 
 .slider .lista {
     position: absolute;
-    width: max-content;
+    width: 100%;
     height: 100%;
     left: 0;
     top: 0;
@@ -640,16 +649,21 @@ strong {
     transition: 1s;
 }
 
+.slider .lista .itens {
+    flex: 0 0 100%;
+    height: 100%;
+}
+
 .slider .lista img {
-    width: 1300px;
-    max-width: 100vw;
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .slider .botao {
     position: absolute;
-    top: 45%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 5%;
     width: 90%;
     display: flex;
@@ -665,6 +679,7 @@ strong {
     border: none;
     font-family: "Roboto Flex", sans-serif;
     font-weight: bolder;
+    cursor: pointer;
 }
 
 .slider .pontos {
@@ -687,9 +702,10 @@ strong {
     margin: 10px;
     border-radius: 20px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
-.slider .pontos li .active {
+.slider .pontos li.active {
     width: 30px;
 }
 
@@ -700,12 +716,13 @@ strong {
 .contato {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 450px 100px 0 100px;
+    align-items: center;
+    gap: 40px;
+    padding: 120px clamp(20px, 6vw, 100px);
     background: linear-gradient(rgba(15, 15, 15, 0.6), rgba(8, 8, 8, 0.9)), url(../img/bg_contato.jpg) center no-repeat;
     background-position: center;
     background-size: cover;
@@ -738,12 +755,14 @@ strong {
 
 .email {
     display: block;
+    max-width: 100%;
     padding: 10px 0;
     font-size: 1.2rem;
     color: goldenrod;
     margin-left: 25px;
     background: none;
     transition: 0.3s ease-in;
+    overflow-wrap: anywhere;
 }
 
 .email:hover {
@@ -777,30 +796,31 @@ strong {
     position: absolute;
     display: flex;
     justify-content: left;
-    left: 100px;
+    left: clamp(20px, 6vw, 100px);
     bottom: 10px;
     overflow: hidden;
 
     display: none;
 }
 
-.active {
+.modal_container.active {
     display: flex;
 }
 
-.active .modal {
+.modal_container.active .modal {
     animation: modal .4s ease-in-out;
 }
 
 
 .modal {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding: 10px 45px;
     background: black;
-    width: 320px;
+    width: min(320px, 92vw);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
@@ -814,17 +834,17 @@ strong {
 }
 
 .modal .close {
-    position: relative;
+    position: absolute;
+    top: 14px;
+    right: 16px;
     color: aliceblue;
     font-size: 1.2rem;
     cursor: pointer;
-    
+
 }
 
 .close .close-email {
     position: relative;
-    margin-left:200px ;
-    bottom: 50px;  
     transition: .3s ease-in;
 }
 
@@ -835,8 +855,8 @@ strong {
 .modal form {
     display: flex;
     flex-direction: column;
-    width: 100;
-    
+    width: 100%;
+
 }
 
 form label {
@@ -878,20 +898,19 @@ form input {
     }
 
 
-    
+
 
     /* --footer-- */
 
 .footer {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     background-color: goldenrod;
-    top: 6250px;   
 }
 
 .footer img {

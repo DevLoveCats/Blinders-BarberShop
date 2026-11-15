@@ -1,71 +1,170 @@
 /* --media queries-- */
+/* Obs.: a maior parte da responsividade já está nas próprias regras (clamp, min, flex).
+   Aqui ficam só os ajustes que mudam a estrutura em telas menores. */
+
+
+/* --tablet e abaixo (1024 px)-- */
+@media (max-width: 1024px) {
+
+    /* background-attachment: fixed não funciona bem em celular/tablet (iOS ignora, Android trava) */
+    .img1,
+    .img2,
+    .img3 {
+        background-attachment: scroll;
+    }
+}
+
+
+/* --900 px-- */
+@media (max-width: 900px) {
+
+    /* contato empilhado */
+    .contato {
+        flex-direction: column;
+        justify-content: center;
+        gap: 50px;
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+
+    .email {
+        margin-left: 0;
+    }
+
+    /* modal vira uma janela centralizada por cima da tela */
+    .modal_container {
+        position: fixed;
+        inset: 0;
+        left: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 2000;
+        overflow-y: auto;
+    }
+
+    .modal_container.active {
+        display: flex;
+    }
+}
+
+
+/* --768 px-- */
+@media (max-width: 768px) {
+
+    /* serviços: imagem em cima, lista embaixo */
+    .serv_wrapper {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .box_esq {
+        flex: none;
+        min-height: 260px;
+    }
+
+    .box_dir {
+        flex: none;
+        padding: 50px 20px;
+    }
+
+    .titulo {
+        min-height: 0;
+        padding: 40px 20px;
+    }
+
+    .slider {
+        margin-top: 60px;
+    }
+}
+
+
+/* --480 px-- */
+@media (max-width: 480px) {
+
+    .sobre h2,
+    .texto {
+        letter-spacing: 4px;
+    }
+
+    .texto1,
+    .texto2 {
+        text-align: left;   /* justify + letra espaçada deixa buracos feios em tela estreita */
+    }
+
+    .galeria-item.left {
+        transform: translateX(-50%) scale(0.8);
+    }
+
+    .galeria-item.right {
+        transform: translateX(50%) scale(0.8);
+    }
+
+    .slider .botao button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .slider .pontos li {
+        margin: 6px;
+    }
+
+    .item {
+        gap: 12px;
+    }
+
+    .preco {
+        min-width: 70px;
+    }
+
+    .contato h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal {
+        padding: 10px 25px;
+    }
+}
 
 
 /* --375 px-- */
-@media (max-width: 375px ) {
-   .header_opening{
-        position: fixed;
-    
-   }
+@media (max-width: 375px) {
 
     .container_logo {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
-
-
     }
-   .detalhe_logo {
+
+    .detalhe_logo {
         width: 120px;
-   
-    
-   }
-   .logo_splash {
-        width: 150px;
-    
-   }
-
-   h1 {
-        font-size: 12px;
-   }
-
-   hr {
-        width: 150px;
-   }
-   .btn {
-        font-size: 12px;
-   }
-
-   /* --home-- */
-
-   /* --navbar-- */
-
-   header .logo{
-        width: 80px;
-        margin-left: 20px;
-   }
-
-   header .btn .close-btn{
-        display: block;
-        
     }
 
-    /* ---sobre- */
+    .logo_splash {
+        width: 150px;
+    }
 
+    h1 {
+        font-size: 12px;
+    }
+
+    hr {
+        width: 150px;
+    }
+
+    .container_entrar .btn {
+        font-size: 12px;
+    }
+
+    /* --navbar-- */
+    header .logo {
+        width: 80px;
+    }
+
+    /* --sobre-- */
     .texto, .texto1, .texto2 {
         font-size: 15px;
     }
-
-
-
-
-
-
-
 }
-
-
-
-    
